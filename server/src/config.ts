@@ -125,6 +125,12 @@ if (process.env.RATE_LIMIT_MAX) {
     config.rateLimit.max = parseInt(process.env.RATE_LIMIT_MAX, 10);
 }
 
+if (process.env.OPENAI_API_KEY) {
+    config.services = config.services || {};
+    config.services.openai = config.services.openai || {};
+    config.services.openai.apiKey = process.env.OPENAI_API_KEY;
+}
+
 if (process.argv.includes('--self-signed')) {
     config.tls = {
         selfSigned: true,
